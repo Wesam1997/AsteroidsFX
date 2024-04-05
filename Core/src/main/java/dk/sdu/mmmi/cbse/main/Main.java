@@ -7,9 +7,10 @@ import dk.sdu.mmmi.cbse.common.data.World;
 import dk.sdu.mmmi.cbse.common.services.IEntityProcessingService;
 import dk.sdu.mmmi.cbse.common.services.IGamePluginService;
 import dk.sdu.mmmi.cbse.common.services.IPostEntityProcessingService;
-import java.util.Collection;
-import java.util.Map;
-import java.util.ServiceLoader;
+
+import java.lang.module.ModuleFinder;
+import java.lang.module.ModuleReference;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import static java.util.stream.Collectors.toList;
 import javafx.animation.AnimationTimer;
@@ -21,7 +22,7 @@ import javafx.scene.shape.Polygon;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class Main extends Application {
+     public class Main extends Application {
 
     private final GameData gameData = new GameData();
     private final World world = new World();
@@ -29,6 +30,7 @@ public class Main extends Application {
     private final Pane gameWindow = new Pane();
 
     public static void main(String[] args) {
+
         launch(Main.class);
     }
 

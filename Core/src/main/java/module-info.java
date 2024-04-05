@@ -12,4 +12,3 @@ module Core {
     uses dk.sdu.mmmi.cbse.common.services.IPostEntityProcessingService;
 }
 
-
