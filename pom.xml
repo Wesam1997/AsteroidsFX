@@ -21,6 +21,7 @@
         <module>Collision</module>
         <module>Enemy</module>
         <module>ModuleSplit</module>
+
     </modules>
 
 
@@ -83,7 +84,7 @@
                     <longModulepath>false</longModulepath>
                     <arguments>
                         <!--                        
-                                               On Mac Devices this line should not be commented out
+                                            On Mac Devices this line should not be commented out
                                                 <argument>-XstartOnFirstThread</argument>
                         -->
                         <argument>-Dorg.lwjgl.util.Debug=true</argument>
@@ -127,6 +128,9 @@
                                 <fileset>
                                     <directory>libs</directory>
                                 </fileset>
+                                <fileset>
+                                    <directory>plugin</directory>
+                                </fileset>
                             </filesets>
                         </configuration>
                     </plugin>
@@ -164,6 +168,7 @@
                                     </artifactItems>
                                     <outputDirectory>../mods-mvn</outputDirectory>
                                 </configuration>
+
                             </execution>
                         </executions>
                     </plugin>
