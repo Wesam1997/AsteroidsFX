@@ -9,7 +9,6 @@ public class CollisionDetector implements IPostEntityProcessingService {
 
     public CollisionDetector() {
     }
-
     @Override
     public void process(GameData gameData, World world) {
         // two for loops for all entities in the world
