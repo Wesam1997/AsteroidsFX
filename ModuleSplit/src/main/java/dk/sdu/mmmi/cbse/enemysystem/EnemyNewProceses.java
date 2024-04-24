@@ -5,8 +5,10 @@ import dk.sdu.mmmi.cbse.common.data.World;
 import dk.sdu.mmmi.cbse.common.services.IPostEntityProcessingService;
 
 public class EnemyNewProceses implements IPostEntityProcessingService {
+
+
     @Override
     public void process(GameData gameData, World world) {
-
+        System.out.println("Im am loaded");
     }
 }

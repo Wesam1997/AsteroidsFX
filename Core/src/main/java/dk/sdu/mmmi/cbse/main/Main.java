@@ -13,7 +13,9 @@ import java.lang.module.ModuleReference;
 import java.nio.file.Paths;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
+
 import static java.util.stream.Collectors.toList;
+
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -34,13 +36,14 @@ public class Main extends Application {
     private static final List<IEntityProcessingService> saveIEntityProcessingService = new ArrayList<>();
 
     public static void main(String[] args) {
-        var layer = createLayer(args[0], "ModuleSplit");
+        var layer = createLayer("plugins", "ModuleSplit");
+
 
         // hente de forskellige layer fra Interface
 
         ServiceLoader<IGamePluginService> gamePluginServices = ServiceLoader.load(layer, IGamePluginService.class);
         ServiceLoader<IPostEntityProcessingService> postEntityProcessingServices = ServiceLoader.load(layer, IPostEntityProcessingService.class);
-        ServiceLoader<IEntityProcessingService>iEntityProcessingServices=ServiceLoader.load(layer,IEntityProcessingService.class);
+        ServiceLoader<IEntityProcessingService> iEntityProcessingServices = ServiceLoader.load(layer, IEntityProcessingService.class);
 
         //stream henter all leyer fra IGamePluginService og lave en map og set den i en varibel som hedder saveIGamePluginService og add til ServiceLoader
         gamePluginServices.stream().map(ServiceLoader.Provider::get).forEach(saveIGamePluginService::add);
@@ -48,13 +51,14 @@ public class Main extends Application {
         iEntityProcessingServices.stream().map(ServiceLoader.Provider::get).forEach(saveIEntityProcessingService::add);
         launch(Main.class);
     }
-         private static ModuleLayer createLayer(String from, String module) {
-             var finder = ModuleFinder.of(Paths.get(from));
-             var parent = ModuleLayer.boot();
-             var cf = parent.configuration().resolve(finder, ModuleFinder.of(), Set.of(module));
-             return parent.defineModulesWithOneLoader(cf, ClassLoader.getSystemClassLoader());
 
-         }
+    private static ModuleLayer createLayer(String from, String module) {
+        var finder = ModuleFinder.of(Paths.get(from));
+        var parent = ModuleLayer.boot();
+        var cf = parent.configuration().resolve(finder, ModuleFinder.of(), Set.of(module));
+        return parent.defineModulesWithOneLoader(cf, ClassLoader.getSystemClassLoader());
+
+    }
 
     @Override
     public void start(Stage window) throws Exception {
@@ -97,8 +101,8 @@ public class Main extends Application {
         for (IGamePluginService iGamePlugin : getPluginServices()) {
             iGamePlugin.start(gameData, world);
         }
-        for (IGamePluginService iGamePluin : saveIGamePluginService){
-            iGamePluin.start(gameData,world);
+        for (IGamePluginService iGamePluin : saveIGamePluginService) {
+            iGamePluin.start(gameData, world);
         }
 
 
@@ -131,27 +135,27 @@ public class Main extends Application {
         for (IEntityProcessingService entityProcessorService : getEntityProcessingServices()) {
             entityProcessorService.process(gameData, world);
         }
-        for (IEntityProcessingService iEntityProcessingService : saveIEntityProcessingService){
-            iEntityProcessingService.process(gameData,world);
+        for (IEntityProcessingService iEntityProcessingService : saveIEntityProcessingService) {
+            iEntityProcessingService.process(gameData, world);
         }
         for (IPostEntityProcessingService postEntityProcessorService : getPostEntityProcessingServices()) {
             postEntityProcessorService.process(gameData, world);
         }
-        for (IPostEntityProcessingService postEntityProcessingService : saveIpostEntity){
-            postEntityProcessingService.process(gameData,world);
+        for (IPostEntityProcessingService postEntityProcessingService : saveIpostEntity) {
+            postEntityProcessingService.process(gameData, world);
         }
     }
 
-    private void draw() {        
+    private void draw() {
         for (Entity polygonEntity : polygons.keySet()) {
-            if(!world.getEntities().contains(polygonEntity)){   
-                Polygon removedPolygon = polygons.get(polygonEntity);               
-                polygons.remove(polygonEntity);                      
+            if (!world.getEntities().contains(polygonEntity)) {
+                Polygon removedPolygon = polygons.get(polygonEntity);
+                polygons.remove(polygonEntity);
                 gameWindow.getChildren().remove(removedPolygon);
             }
         }
-                
-        for (Entity entity : world.getEntities()) {                      
+
+        for (Entity entity : world.getEntities()) {
             Polygon polygon = polygons.get(entity);
             if (polygon == null) {
                 polygon = new Polygon(entity.getPolygonCoordinates());

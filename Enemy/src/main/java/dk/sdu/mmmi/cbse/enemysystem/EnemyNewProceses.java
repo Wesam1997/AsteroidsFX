@@ -12,7 +12,6 @@ public class EnemyNewProceses implements IPostEntityProcessingService {
         if (world.getEntities(Enemy.class).size() == 0) {
             EnemyPlugin enemyPlugin = new EnemyPlugin();
 
-
             enemyPlugin.start(gameData, world);
 
         }

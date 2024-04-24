@@ -28,6 +28,9 @@ public class CollisionDetector implements IPostEntityProcessingService {
         // two for loops for all entities in the world
         for (Entity entity1 : world.getEntities()) {
             for (Entity entity2 : world.getEntities()) {
+                if (entity1 == null) System.out.println("E1 null");
+                if (entity2 == null) System.out.println("E2 null");
+
 
                 // if the two entities are identical, skip the iteration
                 if (entity1.getID().equals(entity2.getID()) || entity1.getType().equals(entity2.getType())) { //test
