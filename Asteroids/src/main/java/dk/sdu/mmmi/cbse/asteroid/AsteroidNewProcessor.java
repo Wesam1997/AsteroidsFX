@@ -12,6 +12,8 @@ public class AsteroidNewProcessor implements IPostEntityProcessingService {
             AsteroidPlugin asteroidPlugin = new AsteroidPlugin();
             asteroidPlugin.start(gameData, world);
         }}
+
+
 }
 
 
