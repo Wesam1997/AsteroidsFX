@@ -16,6 +16,7 @@ public class AsteroidProcessor implements IEntityProcessingService {
 
         for (Entity asteroid : world.getEntities(Asteroid.class)) {
             if(asteroid.isDied()) {
+                System.out.println("asteroid has died ");
                 asteroidSplitter.createSplitAsteroid(asteroid,world);
                 world.removeEntity(asteroid);
                 continue;
