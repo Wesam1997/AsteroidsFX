@@ -30,6 +30,8 @@ public class PlayerControlSystemTest {
        PlayerControlSystem playerControlSystem=new PlayerControlSystem();
 
        Entity player=mock(Entity.class);
-       while (player.getRadius());
+       when(player.getRadius()){
+
+        }
    }
 }
