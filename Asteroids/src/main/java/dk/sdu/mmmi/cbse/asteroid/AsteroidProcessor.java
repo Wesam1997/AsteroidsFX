@@ -13,8 +13,7 @@ public class AsteroidProcessor implements IEntityProcessingService {
 
     @Override
     public void process(GameData gameData, World world) {
-
-        for (Entity asteroid : world.getEntities(Asteroid.class)) {
+        for(Entity asteroid : world.getEntities(Asteroid.class)) {
             if(asteroid.isDied()) {
                 System.out.println("asteroid has died ");
                 asteroidSplitter.createSplitAsteroid(asteroid,world);

@@ -12,7 +12,6 @@ import java.util.Random;
  * @author corfixen
  */
 public class AsteroidSplitterImpl implements IAsteroidSplitter {
-
     @Override
     public void createSplitAsteroid(Entity e, World world) {
         if((e.getRadius()/2) > 5) world.addEntity(createAsteroid(e));
