@@ -26,20 +26,16 @@ public class PlayerControlSystemTest {
 
     }
 
-
     @Test
     public void testPlayerMovment(){
        PlayerControlSystem playerControlSystem=new PlayerControlSystem();
-
        Entity player=mock(Entity.class);
        when(player.isDied()).thenReturn(false);
-
         //add player to the mock world
         when(world.getEntities(Player.class)).thenReturn(Collections.singletonList(player));
 
         // Call the process method of PlayerControlSystem
         playerControlSystem.process(gameData, world);
-
         // Verify that player's rotation has been adjusted
         verify(player).setRotation(anyDouble());
 
