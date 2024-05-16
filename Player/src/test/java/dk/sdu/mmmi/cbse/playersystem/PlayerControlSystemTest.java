@@ -15,6 +15,8 @@ import static org.mockito.Mockito.*;
 
 
 public class PlayerControlSystemTest {
+
+
     @Mock
     private GameData gameData;
     @Mock
@@ -24,12 +26,13 @@ public class PlayerControlSystemTest {
     public void setUp(){
         MockitoAnnotations.initMocks(this);
 
+
     }
 
     @Test
     public void testPlayerMovment(){
-       PlayerControlSystem playerControlSystem=new PlayerControlSystem();
-       Entity player=mock(Entity.class);
+        PlayerControlSystem playerControlSystem=new PlayerControlSystem();
+       Player player=new Player();
        when(player.isDied()).thenReturn(false);
         //add player to the mock world
         when(world.getEntities(Player.class)).thenReturn(Collections.singletonList(player));
@@ -38,6 +41,7 @@ public class PlayerControlSystemTest {
         playerControlSystem.process(gameData, world);
         // Verify that player's rotation has been adjusted
         verify(player).setRotation(anyDouble());
+
 
 
     }
