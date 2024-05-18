@@ -6,6 +6,7 @@ class ScoringSystemTest {
 
     @Test
     void contextLoads() {
+
     }
 
 }
