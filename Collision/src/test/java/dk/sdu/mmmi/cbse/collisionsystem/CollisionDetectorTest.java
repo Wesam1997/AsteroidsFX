@@ -23,8 +23,6 @@ class CollisionDetectorTest {
         entity1.setY(20);
         entity1.setRotation(20);
         entity1.setType("type 1");
-
-
         entity2 = new Entity();
         entity2.setX(10); // Different position to avoid initial collision
         entity2.setY(20);
@@ -38,7 +36,7 @@ class CollisionDetectorTest {
 
     @Test
     void collides() {
-        assertTrue(!collisionDetector.collides(entity1, entity2));
+        assertFalse(collisionDetector.collides(entity1, entity2));
 
     }
     @Test
